@@ -2,8 +2,8 @@ package dcartapi
 
 //DcartAPI DcartAPI
 type DcartAPI interface {
-	GetOrder(invoice string) *Order
-	AddShippingAddress(s *Shipment, oid string) *[]ShipmentResponse
+	GetOrder(invoice string, secureURL string, token string) *Order
+	AddShippingAddress(s *Shipment, oid string, secureURL string, token string) *[]ShipmentResponse
 }
 
 //Order Order

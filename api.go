@@ -10,12 +10,12 @@ import (
 //API API
 type API struct {
 	PrivateKey string
-	Token      string
-	SecureURL  string
+	//Token      string
+	//SecureURL  string
 }
 
 //GetOrder GetOrder
-func (a *API) GetOrder(invoice string) *Order {
+func (a *API) GetOrder(invoice string, secureURL string, token string) *Order {
 	var rtn Order
 	var odrs []Order
 	var url = getOrder + invoice
@@ -25,8 +25,8 @@ func (a *API) GetOrder(invoice string) *Order {
 		req.Header.Set("Content-Type", "application/json;charset=UTF-8")
 		req.Header.Set("Accept", "application/json")
 		req.Header.Set("PrivateKey", a.PrivateKey)
-		req.Header.Set("Token", a.Token)
-		req.Header.Set("SecureURL", a.SecureURL)
+		req.Header.Set("Token", token)
+		req.Header.Set("SecureURL", secureURL)
 		code := cm.ProcessServiceCall(req, &odrs)
 		//log.Println("code: ", code)
 		//log.Println("odrs: ", odrs)
@@ -42,7 +42,7 @@ func (a *API) GetOrder(invoice string) *Order {
 }
 
 //AddShippingAddress AddShippingAddress
-func (a *API) AddShippingAddress(s *Shipment, oid string) *[]ShipmentResponse {
+func (a *API) AddShippingAddress(s *Shipment, oid string, secureURL string, token string) *[]ShipmentResponse {
 	var rtn []ShipmentResponse
 	var url = newShippingAddress
 	url = strings.Replace(url, "OrderId", oid, 1)
@@ -53,8 +53,8 @@ func (a *API) AddShippingAddress(s *Shipment, oid string) *[]ShipmentResponse {
 		req.Header.Set("Content-Type", "application/json")
 		req.Header.Set("Accept", "application/json")
 		req.Header.Set("PrivateKey", a.PrivateKey)
-		req.Header.Set("Token", a.Token)
-		req.Header.Set("SecureURL", a.SecureURL)
+		req.Header.Set("Token", token)
+		req.Header.Set("SecureURL", secureURL)
 		code := cm.ProcessServiceCall(req, &rtn)
 		if code != 200 && code != 201 {
 			log.Println("url: ", url)
