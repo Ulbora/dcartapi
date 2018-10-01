@@ -3,7 +3,7 @@ package dcartapi
 //DcartAPI DcartAPI
 type DcartAPI interface {
 	GetOrder(invoice string) *Order
-	AddShippingAddress(s Shipment) *[]ShipmentResponse
+	AddShippingAddress(s *Shipment, oid string) *[]ShipmentResponse
 }
 
 //Order Order
@@ -15,7 +15,7 @@ type Order struct {
 
 //Shipment Shipment
 type Shipment struct {
-	ShipmentID            string `json:"ShipmentID"`
+	ShipmentID            int    `json:"ShipmentID"`
 	ShipmentFirstName     string `json:"ShipmentFirstName"`
 	ShipmentLastName      string `json:"ShipmentLastName"`
 	ShipmentAddress       string `json:"ShipmentAddress"`
@@ -25,12 +25,12 @@ type Shipment struct {
 	ShipmentZipCode       string `json:"ShipmentZipCode"`
 	ShipmentCountry       string `json:"ShipmentCountry"`
 	ShipmentPhone         string `json:"ShipmentPhone"`
-	ShipmentTax           string `json:"ShipmentTax"`
-	ShipmentWeight        string `json:"ShipmentWeight"`
+	ShipmentTax           int    `json:"ShipmentTax"`
+	ShipmentWeight        int    `json:"ShipmentWeight"`
 	ShipmentTrackingCode  string `json:"ShipmentTrackingCode"`
 	ShipmentUserID        string `json:"ShipmentUserID"`
-	ShipmentNumber        string `json:"ShipmentNumber"`
-	ShipmentAddressTypeID string `json:"ShipmentAddressTypeID"`
+	ShipmentNumber        int    `json:"ShipmentNumber"`
+	ShipmentAddressTypeID int    `json:"ShipmentAddressTypeID"`
 }
 
 //ShipmentResponse ShipmentResponse
