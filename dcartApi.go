@@ -40,3 +40,5 @@ type ShipmentResponse struct {
 	Status  string `json:"Status"`
 	Message string `json:"Message"`
 }
+
+// go mod init github.com/Ulbora/dcartapi
